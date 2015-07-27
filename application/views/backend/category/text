@@ -1,0 +1,87 @@
+function category($listcategory,$parentid=0){
+    $menu_tmp = array();
+    foreach ($listcategory as $key => $item) {
+        if ($item['parentid'] == $parentid) {
+            $menu_tmp[] = $item;
+            unset($listcategory[$key]);
+        }
+    }
+    if($menu_tmp){
+        echo '<ul class="itq-nav">';
+        foreach ($menu_tmp as $item)
+        {
+            echo '<li>';
+            echo '<a href="' . $item['id'] . '">' .'id='.$item['id'].'-'. $item['title'].'-'.$item['parentid']. '</a>';
+            category($listcategory, $item['id']);
+            echo '</li>';
+        }
+        echo '</ul>';
+    }
+}
+
+category($listcategory,0);
+function fibo($n){
+    if($n<=2){
+        return 1;
+    }else{
+        $n = fibo($n-1)+fibo($n-2);
+        return $n;
+    }
+}
+//echo fibo(12);
+
+function findroot($listcategory,$parentid){
+    foreach($listcategory as $key=> $value){
+        if($parentid==$value['id']){
+            echo($value['id']);
+            foreach($listcategory as $valueitem){
+                if($value['parentid']= $valueitem['id']){
+                    echo $valueitem['id'].'<br>';
+                    break;
+                }
+            }
+        }
+    }
+}
+//echo findroot($listcategory,6);
+
+function findrt($listcategory,$parentid=0){
+    $myarr = '';
+    if($parentid==0){
+        return 0;
+    }else{
+        foreach($listcategory as $key=> $value){
+            if($parentid==$value['id']){
+                $myarr.=$value['id'].'/';
+                $myarr.=findrt($listcategory,$value['parentid']);
+                break;
+            }
+        }
+        return $myarr;
+    }
+}
+//echo $a = findrt($listcategory,12);
+//echo '<pre>';
+//print_r($a);
+//echo '</pre>';
+
+function findr($listcategory,$parentid=0){
+    if($parentid==0){
+        return 0;
+    }else{
+        $myarr='';
+        foreach($listcategory as $key=> $value){
+            if($parentid==$value['id']){
+                $myarr.=$value['id'];
+                $myarr.= findr($listcategory,$value['parentid']);
+                break;
+            }
+        }
+        return $myarr;
+    }
+}
+$parentid = $this->Mitq_category->getParentidById(12)['parentid'];
+$a = findr($listcategory,$parentid);
+echo '<pre>';
+print_r($a);
+echo '</pre>';

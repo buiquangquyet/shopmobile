@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Etalage demo</title>
+	<link rel="stylesheet" href="css/etalage.css">
+	<link rel="stylesheet" href="css/example2.css">
+	<link rel="stylesheet" href="css/example3.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="js/jquery.etalage.min.js"></script>
+	<script>
+		jQuery(document).ready(function($){
+			$('#etalage').etalage({
+				thumb_image_width: 300,
+				thumb_image_height: 400,
+				source_image_width: 900,
+				source_image_height: 1200,
+				show_hint: true,
+				click_callback: function(image_anchor, instance_id){
+					alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+				}
+			});
+
+			$('#example2').etalage({
+				thumb_image_width: 312,
+				thumb_image_height: 234,
+				source_image_width: 900,
+				source_image_height: 675,
+				zoom_area_height: 500,
+				magnifier_invert: false,
+				hide_cursor: true,
+				icon_offset: 15,
+				speed: 400
+			});
+
+			$('#example3').etalage({
+				thumb_image_width: 250,
+				thumb_image_height: 250,
+				source_image_width: 900,
+				source_image_height: 900,
+				zoom_area_width: 500,
+				zoom_area_height: 500,
+				zoom_area_distance: 5,
+				small_thumbs: 4,
+				smallthumb_inactive_opacity: 0.3,
+				smallthumbs_position: 'left',
+				show_icon: false,
+				autoplay: false,
+				keyboard: false,
+				zoom_easing: false
+			});
+
+			// This is for the dropdown list example:
+			$('.dropdownlist').change(function(){
+				etalage_show( $(this).find('option:selected').attr('class') );
+			});
+
+		});
+	</script>
+</head>
+<body>
+
+<div id="examples">
+
+	<button onclick="etalage_previous()">Previous image</button>
+	<button onclick="etalage_next()">Next image</button>
+	<button onclick="etalage_show(1)">Show image 1</button>
+	<button onclick="etalage_show(4)">Show image 4</button>
+	<select class="dropdownlist">
+		<option class="1">Size S</option>
+		<option class="2">Size M</option>
+		<option class="3">Size L</option>
+		<option class="4">Pink</option>
+	</select>
+	<ul id="etalage">
+		<li>
+			<a href="optionallink.html">
+				<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image1_thumb.jpg" />
+				<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image1_large.jpg" title="This is an optional description." />
+			</a>
+		</li>
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image2_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image2_large.jpg" title="This text area can also be setup to appear at the top of the image.<br>This second line shows that the description can be longer." />
+		</li>
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image3_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image3_large.jpg" />
+		</li>
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image4_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image4_large.jpg" />
+		</li>
+	</ul>
+
+	<ul id="example2">
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image5_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image5_large.jpg" />
+		</li>
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image6_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image6_large.jpg" />
+		</li>
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image8_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image8_large.jpg" />
+		</li>
+	</ul>
+
+
+	<ul id="example3">
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image6_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image6_large.jpg" />
+		</li>
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image7_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image7_large.jpg" />
+		</li>
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image8_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image8_large.jpg" />
+		</li>
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image9_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image9_large.jpg" />
+		</li>
+		<li>
+			<img class="etalage_thumb_image" src="http://friquemag.net/demos/etalage/demo_files/images/image10_thumb.jpg" />
+			<img class="etalage_source_image" src="http://friquemag.net/demos/etalage/demo_files/images/image10_large.jpg" />
+		</li>
+	</ul>
+
+</div>
+
+
+
+</body>
+</html>

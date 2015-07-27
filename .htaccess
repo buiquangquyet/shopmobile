@@ -1,0 +1,7 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^www.doisongsao.net$ [NC]
+RewriteRule ^(.*)$ http://doisongsao.net/$1 [R=301,L]
+
+RewriteCond $1 !^(index\.php|public|upload|robots\.txt)
+RewriteRule ^(.*)$ index.php?/$1 [L]
